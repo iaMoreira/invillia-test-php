@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Person extends Model
+class Phone extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['user_id', 'phone'];
+
 }

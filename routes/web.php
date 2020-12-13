@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+Route::post('/people', [UploadController::class, 'people']);
+Route::post('/orders', [UploadController::class, 'orders']);

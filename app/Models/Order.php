@@ -12,7 +12,7 @@ class Order extends Model
         return $this->hasMany(Item::class);
     }
 
-    public function addresses() {
-        return $this->hasMany(Address::class);
+    public function address() {
+        return $this->hasOne(Address::class);
     }
 }

@@ -9,7 +9,7 @@ class Person extends Model
     protected $fillable = ['name'];
 
     public function phones() {
-        return $this->hasMany(Phone::class);
+        return $this->hasMany(Phone::class, 'person_id');
     }
 
     public function orders() {

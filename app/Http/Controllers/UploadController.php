@@ -34,7 +34,6 @@ class UploadController extends Controller
                 }
             }
 
-            // DB::rollback();
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();

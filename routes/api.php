@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Api\PersonController;
+use App\Http\Controllers\Api\ItemController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\PhoneController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +22,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/people', [PersonController::class, 'index']);
+Route::get('/people/{id}', [PersonController::class, 'show']);
+
+Route::get('/addresses', [AddressController::class, 'index']);
+Route::get('/addresses/{id}', [AddressController::class, 'show']);
+
+Route::get('/orders', [OrderController::class, 'index']);
+Route::get('/orders/{id}', [OrderController::class, 'show']);
+
+Route::get('/items', [ItemController::class, 'index']);
+Route::get('/items/{id}', [ItemController::class, 'show']);
+
+Route::get('/phones', [PhoneController::class, 'index']);
+Route::get('/phones/{id}', [PhoneController::class, 'show']);

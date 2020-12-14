@@ -11,13 +11,15 @@ use App\Models\Phone;
 class UploadService
 {
 
-    public function uploadPeople(\SimpleXMLElement $people)
+    public function uploadPeople($people)
     {
-        foreach ($people as $personXml) {
+        $people->person = is_array($people->person) ? $people->person : array($people->person);
+        foreach ($people->person as $personXml) {
             $person = Person::updateOrCreate(
-                array('name' => strval($personXml->personname)),
+                array('name' => $personXml->personname),
                 array('id' => intval($personXml->personid))
             );
+            $personXml->phones->phone = is_array($personXml->phones->phone) ? $personXml->phones->phone : array($personXml->phones->phone);
             foreach ($personXml->phones->phone as $phoneXml) {
                 Phone::updateOrCreate(
                     array('phone' => strval($phoneXml)),
@@ -27,10 +29,12 @@ class UploadService
         }
     }
 
-    public function uploadOrders(\SimpleXMLElement $shiporders) {
-        foreach ($shiporders as $shiporder) {
+    public function uploadOrders($shiporders) {
+
+        $shiporders->shiporder = is_array($shiporders->shiporder) ? $shiporders->shiporder : array($shiporders->shiporder);
+        foreach ($shiporders->shiporder as $shiporder) {
             $order = Order::updateOrCreate(
-                array('person_id' => intval($shiporder->orderperson)),
+                array('person_id' => intval($shiporder->orderperson)), // TODO validation
                 array('id' => intval($shiporder->orderid))
             );
 
@@ -45,6 +49,7 @@ class UploadService
 
             );
 
+            $shiporder->items->item = is_array($shiporder->items->item) ? $shiporder->items->item : array($shiporder->items->item);
             foreach ($shiporder->items->item as $itemXml) {
                 Item::updateOrCreate(
                     array(

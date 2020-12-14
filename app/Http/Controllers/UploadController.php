@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Api\ResponseTrait;
+use App\Jobs\ProcessOrdersJob;
+use App\Jobs\ProcessPeopleJob;
 use App\Services\UploadService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +32,8 @@ class UploadController extends Controller
             if (!isset($people->person)) {
                 throw new \Exception('Error parser');
             }
-            $this->service->uploadPeople($people);
+            $people = json_decode(json_encode($people));
+            $this->dispatch((new ProcessPeopleJob($people))->onQueue('uploading'));
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -48,11 +51,11 @@ class UploadController extends Controller
             if (!isset($shiporders->shiporder)) {
                 throw new \Exception('Error parser');
             }
-            $this->service->uploadOrders($shiporders);
+            $shiporders = json_decode(json_encode($shiporders));
+            $this->dispatch((new ProcessOrdersJob($shiporders))->onQueue('uploading'));
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
-            dd($e);
         }
 
         return redirect()->route('home');

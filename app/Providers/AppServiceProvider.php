@@ -7,16 +7,20 @@ use App\Http\Resources\ItemResource;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\PersonResource;
 use App\Http\Resources\PhoneResource;
+use App\Http\Resources\UserResource;
 use App\Models\Address;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Person;
 use App\Models\Phone;
+use App\Models\User;
 use App\Services\AddressService;
 use App\Services\ItemService;
 use App\Services\OrderService;
 use App\Services\PersonService;
 use App\Services\PhoneService;
+use App\Services\RegisterService;
+use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -67,6 +71,19 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AddressService::class, function () {
             return new AddressService(new Address());
         });
+
+        $this->app->bind(UserService::class, function () {
+            return new UserService(new User());
+        });
+
+        $this->app->bind(RegisterService::class, function () {
+            return new RegisterService(new UserService(new User()));
+        });
+
+        $this->app->bind(UserResource::class, function() {
+            return new UserResource(new User());
+        });
+    
     }
 
     /**

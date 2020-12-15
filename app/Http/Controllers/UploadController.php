@@ -33,7 +33,8 @@ class UploadController extends Controller
                 throw new \Exception('Error parser');
             }
             $people = json_decode(json_encode($people));
-            $this->dispatch((new ProcessPeopleJob($people))->onQueue('uploading'));
+            $email = $request->email;
+            $this->dispatch((new ProcessPeopleJob($people, $email))->onQueue('uploading'));
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -52,10 +53,13 @@ class UploadController extends Controller
                 throw new \Exception('Error parser');
             }
             $shiporders = json_decode(json_encode($shiporders));
-            $this->dispatch((new ProcessOrdersJob($shiporders))->onQueue('uploading'));
+            $email = $request->email;
+            
+            $this->dispatch((new ProcessOrdersJob($shiporders, $email))->onQueue('uploading'));
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
+            return $this->responseErrorException($e);
         }
 
         return redirect()->route('home');

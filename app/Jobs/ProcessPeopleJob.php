@@ -14,14 +14,16 @@ class ProcessPeopleJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private $people;
+    private $email;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($people)
+    public function __construct($people, $email)
     {
         $this->people = $people;
+        $this->email = $email;
     }
 
     /**
@@ -31,6 +33,6 @@ class ProcessPeopleJob implements ShouldQueue
      */
     public function handle(UploadService $uploadService)
     {
-        $uploadService->uploadPeople($this->people);
+        $uploadService->uploadPeople($this->people, $this->email);
     }
 }

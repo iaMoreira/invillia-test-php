@@ -134,6 +134,13 @@ Faça a migração e popule o seu banco de dados:
 
 `php artisan migrate --seed`
 
+Habilite uma conta do Gmail para receber o notificações do sistema `https://myaccount.google.com/lesssecureapps`, e configure esse email no `.env`:
+
+```env
+MAIL_USERNAME={myemail}
+MAIL_PASSWORD={passwordemail}
+```
+
 Realize o comando abaixo para habilitar as execuções de jobs em background:
 
 `php artisan queue:work --queue=uploading`

@@ -1,0 +1,1 @@
+Olá, foi inserido <strong>{{ $itens }}</strong> pedidos no sistema.

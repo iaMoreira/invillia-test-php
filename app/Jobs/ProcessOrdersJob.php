@@ -15,14 +15,16 @@ class ProcessOrdersJob implements ShouldQueue
 
 
     private $orders;
+    private $email;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($orders)
+    public function __construct($orders, $email)
     {
-        $this->orders= $orders;
+        $this->orders = $orders;
+        $this->email = $email;
     }
 
     /**
@@ -32,6 +34,6 @@ class ProcessOrdersJob implements ShouldQueue
      */
     public function handle(UploadService $uploadService)
     {
-        $uploadService->uploadOrders($this->orders);
+        $uploadService->uploadOrders($this->orders, $this->email);
     }
 }

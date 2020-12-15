@@ -141,6 +141,10 @@ MAIL_USERNAME={myemail}
 MAIL_PASSWORD={passwordemail}
 ```
 
+Teste a aplicação:
+
+`php artisan test`
+
 Realize o comando abaixo para habilitar as execuções de jobs em background:
 
 `php artisan queue:work --queue=uploading`

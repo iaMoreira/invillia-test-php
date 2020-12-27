@@ -112,7 +112,7 @@ Seu cliente recebe dois modelos XML de seu parceiro. Essas informações devem e
 
 ![](./assets/db.png)
 
-## Instalação
+## Instalação Manual
 
 Instale as dependências do framework:
 
@@ -151,7 +151,56 @@ Realize o comando abaixo para habilitar as execuções de jobs em background:
 
 Por último, para testar a api configure o Postmam com a coleção `assets/invillia.postman_collection.json` e as variáveis de ambiente `assets/invillia.postman_environment.json`. 
 
-### Lista de possíveis rotas para teste:
+## Instalação Docker
+
+Copie o arquivo de exemplo de configuração `.env.example` para `.env` e edite as variáveis relacionadas ao banco de dados:  
+
+`cp .env.example .env `
+
+Faça o build de executar os containers:
+
+`docker-compose build && docker-compose up -d && docker-compose logs -f`
+
+Instale as dependências do framework:
+
+`docker-compose exec laravel-app composer install`
+
+Gere uma nova chave para aplicação:
+
+`docker-compose exec laravel-app php artisan key:generate`
+
+Gere o token do JWT:
+
+`docker-compose exec laravel-app php artisan jwt:secret`
+
+Faça a migração e popule o seu banco de dados:
+
+`docker-compose exec laravel-app php artisan migrate --seed`
+
+Habilite uma conta do Gmail para receber o notificações do sistema `https://myaccount.google.com/lesssecureapps`, e configure esse email no `.env`:
+
+```env
+MAIL_USERNAME={myemail}
+MAIL_PASSWORD={passwordemail}
+```
+
+Teste a aplicação:
+
+`docker-compose exec laravel-app php artisan test`
+
+Realize o comando abaixo para habilitar as execuções de jobs em background:
+
+`docker-compose exec laravel-app php artisan queue:work --queue=uploading`
+
+Por último, para testar a api configure o Postmam com a coleção `assets/invillia.postman_collection.json` e as variáveis de ambiente `assets/invillia.postman_environment.json`. 
+
+### Observações
+
+A aplicação está espelhando na porta 8000 então configure a URL do postman para `http://localhost:8000/api`.
+
+Caso tenha interesse em supervisionar os dados do banco, use o PhpMyAdmin no endereço `http://localhost:8080`.
+
+## Lista de possíveis rotas para teste:
 
 Operação                |      |  Entrada              | Saída | Header  | Middleware |
 ------------------------|------|-----------------------|-------|---------|------------|
@@ -176,6 +225,10 @@ Operação                |      |  Entrada              | Saída | Header  | Mi
 
 ## Considerações Finais
 
+O desafio foi realizado com sucesso, apesar de o tempo para desenvolve-lo ter sido fragmentado.
+De qualquer forma a aplicação foi implementada utilizando as melhores práticas de programação dominadas pelo autor desta aplicação.
+Todos os requisitos, com execeção da documentação, foram implementados com êxito, e para enriquecer o projeto 
+também foram aplicados o uso de Handle Transactions, Handle Exceptions e envio de emails.   
 ### Implementações Atuais
   - MVCS (Model View Controller Service)
   - Template Method
@@ -186,9 +239,10 @@ Operação                |      |  Entrada              | Saída | Header  | Mi
   - Handle Transaction
   - Handle Exceptions
   - Queue Jobs
-### Implementações Futuras
   - TDD
   - Migrations
-  - Documentation
-  - Docker Image
+  - Docker Composer
   - Mails
+
+### Implementações Futuras
+  - Documentation

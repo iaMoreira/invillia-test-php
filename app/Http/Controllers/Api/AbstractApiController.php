@@ -25,13 +25,13 @@ abstract class AbstractApiController extends Controller
      */
     protected $resource;
 
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
         $items = $this->service->getAllPaginate();
         return $this->respondWithCollection($items, $this->resource);
     }
 
-    public function show($id)
+    public function show(int $id): \Illuminate\Http\JsonResponse
     {
         $item = $this->service->getOne($id);
 

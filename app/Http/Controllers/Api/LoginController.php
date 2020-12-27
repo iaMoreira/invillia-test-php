@@ -20,6 +20,34 @@ class LoginController extends Controller
         $this->service = $service;
     }
 
+    /**
+     * @OA\Post(
+     *      path="api/auth/login",
+     *      operationId="login",
+     *      tags={"Login"},
+     *      summary="login",
+     *      description="Returns login data",
+     *      @OA\RequestBody(
+     *          required=true
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
     public function login(LoginFormRequest $request)
     {
         $credentials = $request->only('email', 'password');
@@ -32,6 +60,34 @@ class LoginController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *      path="api/auth/refreshToken",
+     *      operationId="refreshToken",
+     *      tags={"Login"},
+     *      summary="Refresh Token",
+     *      description="Returns login data",
+     *      @OA\RequestBody(
+     *          required=true
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
     public function refreshToken()
     {
         try {
@@ -42,6 +98,34 @@ class LoginController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *      path="api/auth/logout",
+     *      operationId="logout",
+     *      tags={"Login"},
+     *      summary="logout",
+     *      description="Logout system.",
+     *      @OA\RequestBody(
+     *          required=true
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
     public function logout()
     {
         try {

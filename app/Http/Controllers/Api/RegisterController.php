@@ -22,6 +22,34 @@ class RegisterController extends Controller
         $this->resource = $resource;
     }
 
+    /**
+     * @OA\Post(
+     *      path="api/auth/register",
+     *      operationId="register",
+     *      tags={"Login"},
+     *      summary="register",
+     *      description="Returns login data",
+     *      @OA\RequestBody(
+     *          required=true
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Bad Request"
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
     public function create(RegisterFormRequest $request)
     {
         $data = $request->all();

@@ -1,0 +1,434 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Invillia Test Documentation",
+        "description": "Main app description",
+        "contact": {
+            "email": "ianmoreira80@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/addresses": {
+            "get": {
+                "tags": [
+                    "Addresses"
+                ],
+                "summary": "Get list of addresses",
+                "description": "Returns list of addresses",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/addresses/{id}": {
+            "get": {
+                "tags": [
+                    "Addresses"
+                ],
+                "summary": "Get address information",
+                "description": "Returns address data",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Address id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/items": {
+            "get": {
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Get list of items",
+                "description": "Returns list of items",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/items/{id}": {
+            "get": {
+                "tags": [
+                    "Items"
+                ],
+                "summary": "Get item information",
+                "description": "Returns item data",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Item id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "api/auth/login": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "login",
+                "description": "Returns login data",
+                "operationId": "login",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "api/auth/refreshToken": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Refresh Token",
+                "description": "Returns login data",
+                "operationId": "refreshToken",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "api/auth/logout": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "logout",
+                "description": "Logout system.",
+                "operationId": "logout",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/orders": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Get list of orders",
+                "description": "Returns list of orders",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/orders/{id}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Get order information",
+                "description": "Returns order data",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/people": {
+            "get": {
+                "tags": [
+                    "People"
+                ],
+                "summary": "Get list of people",
+                "description": "Returns list of people",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/people/{id}": {
+            "get": {
+                "tags": [
+                    "People"
+                ],
+                "summary": "Get peson information",
+                "description": "Returns peson data",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Peson id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/phones": {
+            "get": {
+                "tags": [
+                    "Phones"
+                ],
+                "summary": "Get list of phones",
+                "description": "Returns list of phones",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/phones/{id}": {
+            "get": {
+                "tags": [
+                    "Phones"
+                ],
+                "summary": "Get phone information",
+                "description": "Returns phone data",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Phone id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "api/auth/register": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "register",
+                "description": "Returns login data",
+                "operationId": "register",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Login",
+            "description": "API Endpoints of Login"
+        },
+        {
+            "name": "People",
+            "description": "API Endpoints of People"
+        },
+        {
+            "name": "Orders",
+            "description": "API Endpoints of Orders"
+        },
+        {
+            "name": "Phones",
+            "description": "API Endpoints of Phones"
+        },
+        {
+            "name": "Items",
+            "description": "API Endpoints of Items"
+        },
+        {
+            "name": "Addresses",
+            "description": "API Endpoints of Addresses"
+        }
+    ],
+    "security": [
+        []
+    ]
+}

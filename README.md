@@ -145,6 +145,9 @@ Teste a aplicação:
 
 `php artisan test`
 
+Caso necessário, realize a construção da documentação:
+`php artisan l5-swagger:generate`
+
 Realize o comando abaixo para habilitar as execuções de jobs em background:
 
 `php artisan queue:work --queue=uploading`
@@ -187,6 +190,9 @@ MAIL_PASSWORD={passwordemail}
 Teste a aplicação:
 
 `docker-compose exec laravel-app php artisan test`
+
+Caso necessário, realize a construção da documentação:
+`docker-compose exec laravel-app php artisan l5-swagger:generate`
 
 Realize o comando abaixo para habilitar as execuções de jobs em background:
 

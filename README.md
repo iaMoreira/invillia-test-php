@@ -249,6 +249,6 @@ também foram aplicados o uso de Handle Transactions, Handle Exceptions e envio 
   - Migrations
   - Docker Composer
   - Mails
+  - Documentation
 
 ### Implementações Futuras
-  - Documentation
